@@ -1,0 +1,56 @@
+banner:
+  location: config/banner.txt
+  encoding: utf-8
+server:
+  context-path: /biodashboard
+  session-timeout: 1800
+  tomcat:
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8088
+  uri-encoding: utf-8
+security:
+  basic:
+    enabled: false
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles:
+    active: prod
+  http:
+    multipart:
+      max-file-size: 30Mb
+      max-request-size: 30Mb
+  devtools:
+    restart:
+      enabled: true
+  #freemarker配置
+  freemarker:
+    content-type: text/html
+    #后缀名
+    suffix: .html
+    template-loader-path: classpath:/templates/ftl
+    charset: UTF-8
+    check-template-location: true
+  
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
+  typeAliasesPackage: com.bio.**.domain
+  global-config:
+    id-type: 0
+    field-strategy: 2
+    db-column-underline: true
+    capital-mode: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+ 
+#设置一个邮件发送人
+biodashboard:
+  mail:
+    sender: chenxofhit@qq.com

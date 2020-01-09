@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bio.sys.dao.DeptDao">
+	
+	<select id="listParentDept" resultType="long">
+		select DISTINCT parent_id from sys_dept
+	</select>
+
+    <select id="getDeptUserNumber" resultType="int">
+		select count(*) from sys_user where id = #{value}
+	</select>
+	
+	<select id="getParentDept" resultType="com.bio.sys.domain.DeptDO">
+		select a.* from sys_dept as a, sys_dept as b where a.id = b.parent_id and b.id = #{value} GROUP BY a.id
+	</select>
+	
+	<select id="getSubDepts" resultType="com.bio.sys.domain.DeptDO">
+			select * from sys_dept  where parent_id = #{value} and del_flag = 1
+	</select>
+	
+</mapper>

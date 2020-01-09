@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${summary.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">部门ID：</label>
+								<div class="col-sm-8">
+									<input id="deptId" name="deptId" th:value="${summary.deptId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">部门名称：</label>
+								<div class="col-sm-8">
+									<input id="deptName" name="deptName" th:value="${summary.deptName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">起始时间：</label>
+								<div class="col-sm-8">
+									<input id="rFromDate" name="rFromDate" th:value="${summary.rFromDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">终止时间：</label>
+								<div class="col-sm-8">
+									<input id="rToDate" name="rToDate" th:value="${summary.rToDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">周报题目：</label>
+								<div class="col-sm-8">
+									<input id="title" name="title" th:value="${summary.title}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">浏览次数：</label>
+								<div class="col-sm-8">
+									<input id="count" name="count" th:value="${summary.count}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="rCreateDate" name="rCreateDate" th:value="${summary.rCreateDate}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/bio/summary/edit.js" th:src="@{/js/appjs/bio/summary/edit.js}">
+	</script>
+</body>
+</html>

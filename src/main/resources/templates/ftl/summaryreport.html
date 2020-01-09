@@ -1,0 +1,46 @@
+<head>
+<title>Mail From BioDashboard</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" charset="UTF-8" />
+</head>
+
+<body>
+	<div>
+		<p>亲爱的${name}老师，</p>
+		<p>
+			截止到现在，BioDashboard 向您汇报上周的周报 (${reportTitle}) 汇总统计情况，如下：<br />
+		<div>
+			<h3>周报统计</h3>
+
+			<table>
+				<tr>
+					<td>小组</td>
+					<td>未交人数</td>
+				</tr>
+
+				<#list reportDONotFinishedCountsMap as key, value> 
+				<tr>
+					<td>${key}</td>
+					<td>${value}</td>
+				</tr>
+				</#list>
+			</table>
+		</div>
+
+		<p>您也可以登录系统进一步查看完整的统计信息和明细列表。</p>
+
+		<br /> BioDashboard 致力于让老师的管理更轻松，让同学们的科研更高效透明，让生活更美好！<br /> 欢迎在
+		Github 上给我们提 Bug 或者 建议，众人拾柴火焰高！<br /> <br /> BioDashboard 登录网址：<a
+			href='${url}' target='_blank'>${url}</a><br />
+		</p>
+
+		<p>
+			祝好, <br /> BioDashboard 团队 敬上 <br />
+		</p>
+
+		<div>*温馨提示:请不要直接回复此邮件哦：）</div>
+	</div>
+</body>
+</html>
+
+
+

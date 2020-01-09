@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<link rel="shortcut icon" href="favicon.ico">
+
+<style type="text/css">
+</style>
+
+<body>
+	<h2><p th:text="${reportTitle}"></p></h2>
+
+	<div th:if="${showStatistics}">
+	  <h3>周报统计</h3>
+		<table id="statistics" class="table table-hover">
+		
+				<tr>
+				<td>小组</td>
+				<td>总人数</td>
+				<td>未交人数</td>
+ 				<td >未交名单</td>
+				</tr>
+				<th:block th:each="reports:${reportDONotFinishedCountsMap}">
+					<tr>
+						<td th:text="${reports.key}"></td>
+						<td th:text="${reportDOShouldFinishedCountsMap['__${reports.key}__']}"></td>
+						<td th:text="${reports.value}"></td>
+						<td th:text="${reportDONotFinishedStaffsMap['__${reports.key}__']}"></td>
+					</tr>
+				</th:block>
+				
+		</table>
+	</div>
+
+	<div th:if="${not #lists.isEmpty(reportDOMap)}">
+	<h3>周报详情</h3>
+		<table id="reports" class="table table-hover">
+			<tr>
+				<td>小组</td>
+				<td>姓名</td>
+				<td>周报内容</td>
+			</tr>
+			<th:block th:each="reports:${reportDOMap}">
+
+				<th:block th:each="report:${reports.value}">
+					<tr>
+						<td th:text="${reports.key}"></td>
+						<td th:text="${report.authorName}"></td>
+						<td th:utext="${report.content}"></td>
+					</tr>
+
+				</th:block>
+			</th:block>
+		</table>
+	</div>
+
+
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="/js/appjs/bio/summary/summary.js" th:src="@{/js/appjs/bio/summary/summary.js}"></script>
+</body>
+</html>

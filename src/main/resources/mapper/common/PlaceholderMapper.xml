@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bio.sys.dao.PlaceholderDao">
+
+
+	<select id="findRandomPlaceholder"
+		resultType="com.bio.sys.domain.PlaceholderDO">
+		SELECT
+		*
+		FROM
+		placeholder
+		WHERE
+		id >= ( ( SELECT MAX( id ) FROM placeholder ) - ( SELECT MIN( id ) FROM
+		placeholder ) ) * RAND( ) + ( SELECT MIN( id ) FROM placeholder )
+		LIMIT 1
+
+	</select>
+
+
+</mapper>
+

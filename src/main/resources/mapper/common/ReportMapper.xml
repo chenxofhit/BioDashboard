@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bio.sys.dao.ReportDao">
+	<select id="getLatestReport"
+		resultType="com.bio.sys.domain.ReportDO">
+		SELECT
+		*
+		FROM
+		report
+		WHERE
+		author_id = #{authorid} and r_to_date
+		<![CDATA[ < ]]>
+		#{rfromdate}
+		ORDER BY
+		r_to_date DESC
+		LIMIT 1
+	</select>
+
+	<select id="getReportCountByTitle" resultType="int">
+		select count(*)
+		from report where title = #{value}
+	</select>
+
+
+	<select id="getReports" resultType="com.bio.sys.domain.ReportDO">
+		SELECT
+		*
+		FROM
+		report
+		WHERE
+		r_from_date = #{fromdate}
+		AND r_to_date = #{todate}
+		AND status = #{status}
+	</select>
+
+
+	<select id="getReportsCount" resultType="com.bio.sys.domain.ReportCountDO">
+		SELECT dept_id as deptId,
+		count(dept_id) as countNumber
+		FROM
+		report 
+		WHERE
+		r_from_date = #{fromdate}
+		AND r_to_date = #{todate}
+		AND status = #{status} GROUP BY dept_id
+	</select>
+
+
+
+</mapper>

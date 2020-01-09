@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-11">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+							<input id="id" name="id" th:value="${report.id}" type="hidden">
+							<!-- 		<div class="form-group">	
+								<label class="col-sm-3 control-label">作者ID：</label>
+								<div class="col-sm-8">
+									<input id="authorId" name="authorId" th:value="${report.authorId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">作者姓名：</label>
+								<div class="col-sm-8">
+									<input id="authorName" name="authorName" th:value="${report.authorName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">上级部门 ID：</label>
+								<div class="col-sm-8">
+									<input id="parentDeptId" name="parentDeptId" th:value="${report.parentDeptId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">部门ID：</label>
+								<div class="col-sm-8">
+									<input id="deptId" name="deptId" th:value="${report.deptId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">部门名称：</label>
+								<div class="col-sm-8">
+									<input id="deptName" name="deptName" th:value="${report.deptName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">起始时间：</label>
+								<div class="col-sm-8">
+									<input id="rFromDate" name="rFromDate" th:value="${report.rFromDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">终止时间：</label>
+								<div class="col-sm-8">
+									<input id="rToDate" name="rToDate" th:value="${report.rToDate}" class="form-control" type="text">
+								</div>
+							</div> -->
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> </label>
+								<div class="col-sm-8">
+									<h3>
+										<span th:text="${report.title}"></span>
+									</h3>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">快捷初始化：</label>
+								<div class="col-sm-3">
+									<button id="usepreviousweek" type="button" class="btn btn-info">使用最近周周报</button>
+								</div>
+								<div class="col-sm-3">
+									<button id="usedefaulttemplate" type="button" class="btn btn-info">使用默认模板</button>
+								</div>
+							</div>
+							<div class="form-group">
+								<!-- 								<label class="col-sm-3 control-label">周报内容：</label>
+ -->
+								<div class="col-sm-10">
+									<textarea id="summernote" name="content"></textarea>
+
+								</div>
+								<!-- 	
+								<div id="summernote"  class="col-sm-8"> <h3>本周工作总结：</h3><ol><li><br></li><li>【如有更多项，请点击 Tab 键后按 Enter 】 &nbsp;&nbsp;</li></ol><h3>下周工作计划：</h3><ol><li>&nbsp; &nbsp;&nbsp;</li><li>【如有更多项，请点击 Tab 键后按 Enter 】 &nbsp;</li></ol><h3>存在问题：<span style="font-weight: normal;">【如无，请直接删除此项！】</span></h3><ol><li>&nbsp; &nbsp;&nbsp;</li><li>【如有更多项，请点击 Tab 键后按 Enter】 &nbsp;</li></ol>
+								</div>
+							 -->
+
+							</div>
+							<!-- 			<div class="form-group">	
+								<label class="col-sm-3 control-label">状态0：系统生成，1：人工修改：</label>
+								<div class="col-sm-8">
+									<input id="status" name="status" th:value="${report.status}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="rCreateDate" name="rCreateDate" th:value="${report.rCreateDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="rChgDate" name="rChgDate" th:value="${report.rChgDate}" class="form-control" type="text">
+								</div>
+							</div> -->
+
+
+							<div class="form-group">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-primary btn-block">提交</button>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/bio/report/edit.js" th:src="@{/js/appjs/bio/report/edit.js}">
+		
+	</script>
+
+
+<script th:inline="javascript">
+var prefix = document.getElementsByTagName('meta')['ctx'].content + "/bio/report"
+
+/*<![CDATA[*/
+		$(document)
+				.ready(
+						function() {
+							
+							//使用最近周报
+							$('#usepreviousweek').on('click', function(e){
+								var markupStr = $("#summernote").val();
+
+								$.ajax({
+									url : prefix + "/latest/" + $("#id").val(),
+									type : "get",
+									success : function(r) {
+										if (r.code == 0) {
+											$('#summernote').summernote('code', markupStr + r.data.content );
+											layer.msg("获取到周报内容，并初始化成功！");
+										} else {
+											layer.msg("没有获取到对应的历史周报信息！");
+										}
+									}
+								});
+							
+								
+							});
+							
+							
+							//使用默认模板
+							$('#usedefaulttemplate').on('click', function(e){
+								var markupStr = $("#summernote").val();
+								$('#summernote').summernote('code', markupStr + '<p style=""><span style="color: inherit; font-family: inherit; font-size: 14px;">本周工作总结：</span></p><ol><li><br></li><li>【如有更多项，请点击 Tab 键后按 Enter 】</li></ol><span style="font-size: 14px;">下周工作计划：</span><ol><li>&nbsp; &nbsp;&nbsp;</li><li>【如有更多项，请点击 Tab 键后按 Enter 】 &nbsp;</li></ol><span style="font-size: 14px;">存在问题：</span><span style="font-weight: normal; font-size: 14px;">【如无，请直接删除此项！】</span><ol><li>&nbsp; &nbsp;&nbsp;</li><li>【如有更多项，请点击 Tab 键后按 Enter】 &nbsp;</li></ol>');
+							});
+
+							$('#summernote')
+									.summernote(
+											{
+												placeholder : [[${dynamicPlaceholder}]],
+												tabsize : 2,
+												height : 200, //高度，根據需要去設
+												lang : 'zh-CN', //zh-CN爲中文文件，如果需要轉換語言，注意在下載的lang文件夾中取出並加載
+												focus : true,
+												toolbar : [
+														[
+																'style',
+																[
+																		'bold',
+																		'italic',
+																		'underline',
+																		'clear' ] ],
+														[ 'fontsize',
+																[ 'fontsize' ] ],
+														[ 'color', [ 'color' ] ],
+														[
+																'para',
+																[ 'ul', 'ol',
+																		'paragraph' ] ],
+
+														[ 'insert', [ 'link' ] ],
+														[
+																'view',
+																[
+																		'fullscreen',
+																		'codeview',
+																		'help' ] ] ]
+											});
+
+							$('#summernote').summernote('code', [[${report.content}]]);
+
+						});
+		/*]]>*/
+	</script>
+
+</body>
+</html>
