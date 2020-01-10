@@ -17,6 +17,16 @@ The dashboard of Prof.Li's group, let it boost the research cooperation and make
 ### 通知模块：
 系统在后台维护了三个定时任务来支持通知功能。在周一早七点的时候给所有员工发送生成本周的周报草稿通知邮件； 在周日晚七点的时候会给未及时完成周报的员工发通知邮件； 在周一早八点半的时候会给部门主管推送上周组内周报的统计信息(未完成人数及名单)。目前仅支持邮件推送。
 
+### 系统截图
+
+https://tva1.sinaimg.cn/large/006tNbRwgy1gaekv4c2vuj30np0ei74x.jpg
+https://tva1.sinaimg.cn/large/006tNbRwgy1gael2aknjtj30x20io419.jpg
+https://tva1.sinaimg.cn/large/006tNbRwgy1gael5yeqtij30wy0ehmym.jpg
+
+https://tva1.sinaimg.cn/large/006tNbRwgy1gaeln2205ej31240eb41g.jpg
+https://tva1.sinaimg.cn/large/006tNbRwgy1gaem6qec6uj311x0d5acc.jpg
+https://tva1.sinaimg.cn/large/006tNbRwgy1gaelks6pl8j311s0h7acs.jpg
+
 ## 技术选型
 
 基于 Spring Boot + Mybatis + Mybatis Plus搭建的平台。
