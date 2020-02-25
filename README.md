@@ -54,4 +54,4 @@ CSS框架：Twitter Bootstrap
 日期控件： datepicker
 
 ## 开发及使用
-自己部署或者访问：https://chenxofhit.com/rushdashboard 试用！
+自己部署或者访问：https://chenxofhit.com/rushboard 注册试用！
