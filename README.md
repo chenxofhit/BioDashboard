@@ -68,8 +68,10 @@ CSS框架：Twitter Bootstrap
 添加一个同学或员工的时候手动在那个定时任务的地方点击“运行一次”，就可以给那个同学生成本周的周报模板；然后打开“开启定时任务”，这个任务会一直执行下去，每周都会给该同学发周报任务；
 
 ## 后续开发计划
-暂无，有想法的欢迎联系我一起讨论；
+暂无，有产品或者技术有任何想法的非常欢迎在QQ群讨论或者提交issues；
 
-## 开发及使用
-自己部署或者访问：https://chenxofhit.com/rushboard ，点击 ‘机构注册’ 注册账号后使用！ 如果您觉得本系统对您有用，请点击右上角的 Star ~ 
+## 开发建议
+开发时建议直接使用 SpringBoot 提供的内嵌 Tomcat 容器，ApplicationEmbedded.java 中的 annotation 请取消掉注释，直接使用 Run As Java Application 的形式；部署的时候建议把 ApplicationEmbedded.java 中的 annotation 注释掉，然后使用 maven 打成 war 包部署到 Tomcat 中。
 
+## 产品试用
+访问：https://chenxofhit.com/rushboard ，点击 ‘机构注册’ 注册账号后使用！ 如果您觉得本系统对您有用，请点击右上角的 Star ~ 
