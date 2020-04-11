@@ -74,4 +74,4 @@ CSS框架：Twitter Bootstrap
 开发时建议直接使用 SpringBoot 提供的内嵌 Tomcat 容器，ApplicationEmbedded.java 中的 annotation 请取消掉注释，直接使用 Run As Java Application 的形式；部署的时候建议把 ApplicationEmbedded.java 中的 annotation 注释掉，然后使用 maven 打成 war 包部署到 Tomcat 中。
 
 ## 产品试用
-欢迎访问：https://chenxofhit.com/rushboard，  点击‘机构注册’注册账号后使用！如果您觉得本系统对您有所启示或帮助，跪求点击仓库右上角的 Star ~ 
+欢迎访问：https://chenxofhit.com/rushboard，  点击‘机构注册’注册账号后使用！烟花易冷，落笔成殇，如果您觉得本系统对您有所启示或帮助，请点击右上角的Star，愿盛世繁华如你所愿。 
