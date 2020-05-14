@@ -1,4 +1,4 @@
-<a name="index">**Index**</a>
+<a name="index">**导航**</a>
 
 <a href="#0">BioDashboard 周报管理系统</a>
 
