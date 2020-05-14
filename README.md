@@ -61,17 +61,25 @@ CSS框架：Twitter Bootstrap
 ### admin的登录密码？
 请查看一下源代码，用户登录部分；
 
-### 同学能自己创建周报吗？
-考虑到每个人写周报的时候标题格式都不一样，不便于管理，因此同学不能自己创建周报；退而求其次，这个周报是由后台定时任务添加的，类似于派单：周一的时候会给所有的同学生成本周的周报任务，每个同学在本周周五之前填写完成. 我比较欣赏的一句话：Larry Wall's Perl slogan "There's more than one way to do it" 
+### 用户能自己创建周报吗？
+这是留言里面问的最多的一个问题，答案是不能：） 考虑到每个人写周报的时候标题格式都不一样，不便于管理，因此同学不能自己创建周报；退而求其次，这个周报是由后台定时任务添加的，类似于派单：周一的时候会给所有的同学生成本周的周报任务，每个同学在本周周五之前填写完成. 我比较欣赏的一句话：Larry Wall's Perl slogan "There's more than one way to do it"； 
 
 ### 定时任务
 添加一个同学的时候手动在生成周报模板的定时任务的地方点击“运行一次”，就可以给那个同学生成本周的周报模板（之前发送过的不会重发，利用业务逻辑保证的幂等性）；然后打开“开启定时任务”，这个任务会一直在每周的制定时间给该同学派发周报任务；
 
 ## 后续开发计划
-暂无，有产品或者技术有任何想法的非常欢迎在QQ群讨论或者直接提交issues；由于瘟疫的原因有部分同学提出要加上日报功能欢迎PR二次开发；
+希望有产品经验的，UI设计经验的同学加入，同时寻微信小程序，iOS，Android 三端开发爱好者共同完成，代码将完全开源； 
 
-## 二次开发建议
-开发时建议直接使用 SpringBoot 提供的内嵌 Tomcat 容器，ApplicationEmbedded.java 中的 annotation 请取消掉注释，直接使用 Run As Java Application 的形式；部署的时候建议把 ApplicationEmbedded.java 中的 annotation 注释掉，然后使用 maven 打成 war 包部署到 Tomcat 中。
+## 独立部署建议
+
+### 配置邮件客户端
+application.properties 邮件客户端修改成适合自己团队使用的配置；
+
+### 配置本地和线上的数据库
+这个部分就不说了，建库脚本在 QQ 群共享中，请加入后获取；
+
+### Eclipse 或者 IDEA 支持
+开发时建议直接使用 Spring Boot 提供的内嵌 Tomcat 容器，ApplicationEmbedded.java 中的 annotation 请取消掉注释，直接使用 Run As Java Application 的形式；部署的时候建议把 ApplicationEmbedded.java 中的 annotation 注释掉，然后使用 maven 打成 war 包部署到 Tomcat 中。
 
 ## 产品试用
 欢迎访问：https://chenxofhit.com/rushboard 点击‘机构注册’注册账号后使用！烟花易冷，落笔成殇，如果您觉得本系统对您有所启示或帮助，请点击右上角的Star :hearts:，愿盛世繁华:fireworks:	如你所愿:sparkling_heart:	:sparkling_heart:	:sparkling_heart:	。 
