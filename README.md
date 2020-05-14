@@ -1,23 +1,3 @@
-- [BioDashboard 周报管理系统](#biodashboard-------)
-  * [功能](#--)
-    + [周报模块](#----)
-    + [组织及成员管理模块](#---------)
-    + [通知模块：](#-----)
-    + [系统截图](#----)
-  * [技术选型](#----)
-  * [QA](#qa)
-    + [SQL文件在哪里？](#sql------)
-    + [admin的登录密码？](#admin------)
-    + [用户能自己创建周报吗？](#-----------)
-    + [定时任务](#----)
-  * [后续开发计划](#------)
-  * [独立部署建议](#------)
-    + [配置邮件客户端](#-------)
-    + [配置本地和线上的数据库](#-----------)
-    + [Eclipse 或者 IDEA 支持](#eclipse----idea---)
-  * [产品试用](#----)
-
-
 # BioDashboard 周报管理系统
 
 The dashboard of Prof.Li's group, let it boost the research cooperation and makes research better！:rocket:	:rocket:	:rocket:	
