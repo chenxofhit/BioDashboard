@@ -94,7 +94,7 @@ application.properties 邮件客户端修改成适合自己团队使用的配置
 这个部分就不说了，建库脚本在 QQ 群共享中，请加入后获取；
 
 ### <a name="14">Eclipse 或者 IDEA 支持</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-开发时建议直接使用 Spring Boot 提供的内嵌 Tomcat 容器，ApplicationEmbedded.java 中的 annotation 请取消掉注释，直接使用 Run As Java Application 的形式；部署的时候建议把 ApplicationEmbedded.java 中的 annotation 注释掉，然后使用 maven 打成 war 包部署到 Tomcat 中。
+开发时建议直接使用 Spring Boot 提供的内嵌 Tomcat 容器，ApplicationEmbedded.java 中的 annotation 请取消掉注释同时把 ApplicationExternal.java 全部注释掉，直接选中ApplicationEmbedded.java 使用 `Run As Java Application` 的形式；部署的时候建议把 ApplicationEmbedded.java 中的 annotation 注释掉把 ApplicationExternal.java 复原，然后使用 maven 打成 war 包部署到 Tomcat 中。
 
 
 
@@ -144,7 +144,5 @@ CSS框架：Twitter Bootstrap
 
 日期控件： datepicker
 
-
-
 ## <a name="17">产品试用</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-欢迎访问：https://chenxofhit.com/rushboard 点击‘机构注册’注册账号后使用！烟花易冷，落笔成殇，如果您觉得本系统对您有所启示或帮助，请点击右上角的Star :hearts:，愿盛世繁华:fireworks:	如你所愿:sparkling_heart:	:sparkling_heart:	:sparkling_heart:	。 在个人的博客文章中我对这个项目的前前后后做了一个回顾，地址是：https://chenxofhit.com/blog/index.php/46.html 也欢迎阅读和合作！ 
+欢迎访问：https://chenxofhit.com/rushboard 点击‘机构注册’注册账号后使用！烟花易冷，落笔成殇，如果您觉得本系统对您有所启示或帮助，请点击右上角的Star :hearts:，愿盛世繁华:fireworks:	如你所愿:sparkling_heart:	:sparkling_heart:	:sparkling_heart:	。 在个人的博客文章中我对这个项目的来龙去脉做了一个回顾，地址是：https://chenxofhit.com/blog/index.php/46.html 欢迎点击阅读！ 
