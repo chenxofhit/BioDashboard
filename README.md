@@ -40,7 +40,7 @@
 
 The dashboard of Prof.Li's group, let it boost the research cooperation and makes research better！:rocket:	:rocket:	:rocket:	
 
-项目起源于:cn:中南大学生物信息实验室http://bioinformatics.csu.edu.cn ，试用请访问本文档末尾提供的试用链接:arrow_heading_down:	。
+项目起源于:cn:中南大学生物信息实验室http://bioinformatics.csu.edu.cn ，试用请点击本文底部提供的链接:arrow_heading_down:	。
 
 适合中小型公司:office:	或者科研院校实验室:school:	的周报系统，采用“实验室[部门]-PI[部门主管]-学生[员工]”扁平化的模式管理，代码完全开源，部署简单方便。下文为了叙述方便，统一采用 “实验室-PI-学生”的视角来展开，不失一般性。
 
