@@ -84,7 +84,7 @@ PI 可以增删查改小组及管理相应小组的成员。
 
 ### <a name="11">管理员admin的登录密码？</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-请查看一下源代码，用户登录部分；
+请查看一下源代码 https://github.com/chenxofhit/BioDashboard/blob/master/src/main/java/com/bio/common/utils/MD5Utils.java 登录帐号密码：admin/1；
 
 ### <a name="12">配置邮件客户端</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
