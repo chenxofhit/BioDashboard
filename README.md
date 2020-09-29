@@ -1,6 +1,6 @@
 <a name="index">**导航**</a>
 
-<a href="#0">BioDashboard 周报管理系统</a>
+<a href="#0">BioDashboard 周报系统</a>
 
 &emsp;<a href="#1">目录</a>
 
@@ -36,7 +36,7 @@
 
 &emsp;<a href="#17">产品试用</a>
 
-# <a name="0">BioDashboard 周报管理系统</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+# <a name="0">BioDashboard 周报系统</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 The dashboard of Prof.Li's group, let it boost the research cooperation and makes research better！:rocket:	:rocket:	:rocket:	
 
