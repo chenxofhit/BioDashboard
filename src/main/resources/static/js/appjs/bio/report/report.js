@@ -150,14 +150,15 @@ function add() {
 	});
 }
 function edit(id) {
-	layer.open({
+	var index = layer.open({
 		type : 2,
 		title : '编辑',
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
-		area : [ '950px', '650px' ],
+		area : [ '900px', '550px' ],
 		content : prefix + '/edit/' + id // iframe的url
 	});
+	layer.full(index);
 }
 function remove(id) {
 	layer.confirm('确定要删除选中的记录？', {
