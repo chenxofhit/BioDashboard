@@ -11,13 +11,15 @@ import com.bio.sys.domain.ReportDO;
 import com.bio.sys.domain.SummaryDO;
 import com.bio.sys.service.SummaryService;
 
+
 /**
  * 
- * <pre>
  * 周报汇总
- * </pre>
- * <small> 2019-12-18 15:03:07 | chenx</small>
+ * 
+ * @author chenx
+ *
  */
+
 @Service
 public class SummaryServiceImpl extends CoreServiceImpl<SummaryDao, SummaryDO> implements SummaryService {
 

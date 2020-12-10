@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.bio.common.domain.Tree;
 import com.bio.common.exception.DashboardException;
-import com.bio.common.service.ContextService;
 import com.bio.common.type.EnumErrorCode;
 import com.bio.common.utils.BuildTree;
 import com.bio.common.utils.FileType;
@@ -41,14 +40,17 @@ import com.bio.sys.service.UserService;
 import com.bio.sys.vo.UserVO;
 
 /**
- * <pre>
- * </pre>
  * 
- * <small> 2018年3月23日 | Aron</small>
+ * 用户服务
+ * 
+ * @author chenx
+ *
  */
+
 @Transactional
 @Service
 public class UserServiceImpl extends ServiceImpl<UserDao, UserDO> implements UserService {
+	
 	@Autowired
 	UserRoleDao userRoleMapper;
 	@Autowired

@@ -7,8 +7,6 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
-
-
 /**
  * 
  * <pre>
@@ -18,6 +16,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  */
  @TableName("report_summary")
 public class SummaryDO implements Serializable {
+	 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     

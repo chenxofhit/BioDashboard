@@ -69,11 +69,11 @@ public class SummaryController {
 		if(userDO.getroleId().intValue() == 1) { // 超级管理员，默认所有的报告
 		}
 		
-		if(userDO.getroleId().intValue() == 2) { // PI，只显示PI负责的下属dept 的报告
+		if(userDO.getroleId().intValue() == 2) { // PI，显示PI负责的下属dept 的报告
 			summaryDTO.setDeptId(userDO.getDeptId());
 		}
 		
-		if(userDO.getroleId().intValue() == 3) { // 学生，只显示自己的PI下属所有dept的报告
+		if(userDO.getroleId().intValue() == 3) { // 学生，显示自己的PI下属所有dept的报告(开放性设计，这个地方针对企业和研究组的逻辑可能不一样)
 			summaryDTO.setDeptId(deptService.selectById(userDO.getDeptId()).getParentId());
 		}
 		

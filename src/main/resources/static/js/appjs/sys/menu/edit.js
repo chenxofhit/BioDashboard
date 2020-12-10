@@ -1,4 +1,5 @@
-var prefix =document.getElementsByTagName('meta')['ctx'].content + "/sys/menu"
+var prefix = document.getElementsByTagName('meta')['ctx'].content + "/sys/menu"
+
 $(function() {
 	validateRule();
 

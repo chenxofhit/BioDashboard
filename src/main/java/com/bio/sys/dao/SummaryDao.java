@@ -18,8 +18,22 @@ import com.bio.sys.domain.SummaryDO;
  */
 public interface SummaryDao extends BaseDao<SummaryDO> {
 
+	/**
+	 * 获取指定的部门在某个时间段的周报列表
+	 * 
+	 * @param deptId
+	 * @param fromDate
+	 * @param toDate
+	 * @return
+	 */
 	List<ReportDO> selectListReportDOs(@Param("deptId") Long deptId, @Param("fromDate") Date fromDate, @Param("toDate") Date toDate); 
 
+	/**
+	 * 根据title获取summary的数目
+	 * 
+	 * @param title
+	 * @return
+	 */
 	public Integer getSummaryCountByTitle(String title);
 
 }

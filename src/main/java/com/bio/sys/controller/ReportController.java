@@ -78,7 +78,7 @@ public class ReportController {
 		UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
 		
 		if(userDO.getroleId().intValue() == 1) { // 超级管理员，默认所有的报告
-			//TODO: 不做处理
+			//TODO:不做处理
 		}
 		
 		if(userDO.getroleId().intValue() == 2) { // PI，只显示PI负责的下属dept 的报告
@@ -89,7 +89,7 @@ public class ReportController {
 			reportDTO.setAuthorId(userDO.getId());
 		}
 		
-		// 查询列表数据
+		//查询列表数据
         Page<ReportDO> page = new Page<>(pageNumber, pageSize);
         
         Wrapper<ReportDO> wrapper = new EntityWrapper<ReportDO>(reportDTO);
