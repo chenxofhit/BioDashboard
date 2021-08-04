@@ -146,4 +146,4 @@ CSS框架：Twitter Bootstrap
 
 ### <a name="16">试用链接</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-http://107.173.154.176:8080/rushboard/
+https://chenxofhit.com/rushboard
