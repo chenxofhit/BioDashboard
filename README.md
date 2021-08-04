@@ -106,7 +106,7 @@ application.properties 邮件客户端修改成适合自己团队使用的配置
 
 基于 Spring Boot + Mybatis + Mybatis Plus搭建的平台。
 
-以 Spring Boot 为基础框架， Mybatis plus为数据访问层, Apache Shiro 为权限授权层， Ehcahe 对常用数据进行缓存，基于 Bootstrap 构建的 Admin LTE 作为前端框架。
+以 Spring Boot 为基础框架， Mybatis plus为数据访问层, Apache Shiro 为权限授权层, Ehcahe 对常用数据进行缓存,基于 Bootstrap 构建的 Admin LTE 作为前端框架。
 
 1.后端
 
@@ -146,4 +146,4 @@ CSS框架：Twitter Bootstrap
 
 ### <a name="16">试用链接</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-https://chenxofhit.com/rushboard
+https://chenxofhit.com/rushboard ，Rushboard 是 BioDashboard 的升级版本，详细的介绍请参考：https://github.com/chenxofhit/Rushboard 。
