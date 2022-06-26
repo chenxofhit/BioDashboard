@@ -146,4 +146,4 @@ CSS框架：Twitter Bootstrap
 
 ### <a name="16">试用链接</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-https://chenxofhit.com/rushboard ，Rushboard 是 BioDashboard 的升级版本，详细的介绍请参考：https://github.com/chenxofhit/Rushboard 。
+https://chenxofhit.xyz/rushboard ，Rushboard 是 BioDashboard 的升级版本，详细的介绍请参考：https://github.com/chenxofhit/Rushboard 。
