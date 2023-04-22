@@ -11,9 +11,9 @@
     <meta name="description" content="BioDashboard 系统">
     <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link href="/css/font-awesome.css?v=4.4.0" th:href="@{/css/font-awesome.css?v=4.4.0}" rel="stylesheet">
-    <link href="/css/animate.css"  th:href="@{/css/animate.css}" rel="stylesheet">
+    <link href="/css/animate.css" th:href="@{/css/animate.css}" rel="stylesheet">
     <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
-    <link href="/css/login.css"  th:href="@{/css/login.css}" rel="stylesheet">
+    <link href="/css/login.css" th:href="@{/css/login.css}" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -55,7 +55,15 @@
                        value="admin"/>
                 <input type="password" name="password"
                        class="form-control pword m-b" value="111111"/>
-                <button class="btn btn-login btn-block">登录</button>
+                <div>
+                    <div>
+                        <input type="text" id="code_input" name="code" value="" class="form-control" style="height: 35px; width: 145px; float: left; margin-top: -0px;"/>
+                    </div>
+                    <div id="v_container" alt="点击更换" th:title="点击更换" style="height: 35px; width: 145px; float: right; margin-bottom: 20px;"></div>
+                </div>
+                <span id="msg" class="errorMsg" th:text="${msg}" style="color: red;"></span>
+
+                <button class="btn btn-login btn-block" id="my_button">登录</button>
                 <!--按钮模块-->
 <!--                 <div class="outside-login">
                     <div class="outside-login-tit">
@@ -72,12 +80,11 @@
                         </a>
                      </div>
                 </div> -->
-
             </form>
         </div>
     </div>
     <div class="signup-footer">
-        <div class="pull-left">BioDashboard V1.0.0, Copyright @ 2019，生物信息研究组 | <a href="https://github.com/chenxofhit/BioDashboard/issues">意见反馈</a>
+        <div class="pull-left">BioDashboard V1.0.0, Copyright @ 2019-2023，生物信息研究组 | <a href="https://github.com/chenxofhit/BioDashboard/issues">意见反馈</a>
         </div>
     </div>
     
@@ -91,7 +98,7 @@
 
 <!-- 自定义js -->
 <script src="/js/content.js?v=1.0.0" th:src="@{/js/content.js?v=1.0.0}"></script>
-
+<script src="/js/wer.js" th:src="@{/js/wer.js}"></script>
 <!-- jQuery Validation plugin javascript-->
 <script src="/js/plugins/validate/jquery.validate.min.js" th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
 <script src="/js/plugins/validate/messages_zh.min.js" th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
@@ -109,6 +116,22 @@
             login();
         }
     });
+
+    // 验证码校验
+    var verifyCode = new GVerify("v_container");
+    document.getElementById("my_button").onclick = function(){
+        var res = verifyCode.validate(document.getElementById("code_input").value);
+        if(res){
+            //alert("验证正确");
+            return true;
+        }else{
+            //alert("验证码错误");
+            $("span.errorMsg").text("验证码不能为空或错误！");
+            return false;
+        }
+
+    }
+
 
     function login4qq() {
        alert('QQ登录完善中')
@@ -148,6 +171,7 @@
                 password: {
                     required: true
                 }
+
             },
             messages: {
                 username: {

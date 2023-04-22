@@ -80,7 +80,7 @@ function load() {
 									title : '周报题目',
 									formatter : function(value, row, index) {
 										href = prefix + '/review/' + row.id;
-										var f = '<a class="btn btn-link btn-sm" href="'+ href + '" target="_blank">' + row.title+ '</a>';
+										var f = '<a class="btn btn-link btn-sm" href="'+ href + '" target="_self">' + row.title+ '</a>';
 										return f;
 									}
 								},

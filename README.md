@@ -40,7 +40,7 @@
 
 The dashboard of Prof.Li's group, let it boost the research cooperation and makes research better！:rocket:	:rocket:	:rocket:	
 
-项目起源于:cn:中南大学生物信息实验室http://bioinformatics.csu.edu.cn ，试用请点击本文底部提供的链接:arrow_heading_down:	。
+项目起源于:cn: 中南大学生物信息实验室(http://bioinformatics.csu.edu.cn) ，在中南大学生物信息实验室、湖南科技大学单细胞计算生物研究组中使用，并被诸如第四范式等业界知名公司、江苏理工大学毕业设计原型采用。
 
 适合中小型公司:office:	或者科研院校实验室:school:	的周报系统，采用“实验室[部门]-PI[部门主管]-学生[员工]”扁平化的模式管理，代码完全开源，部署简单方便。下文为了叙述方便，统一采用 “实验室-PI-学生”的视角来展开，不失一般性。
 
@@ -73,9 +73,6 @@ PI 可以增删查改小组及管理相应小组的成员。
 ### <a name="8">定时任务</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 添加一个同学的时候手动在生成周报模板的定时任务的地方点击“运行一次”，就可以给那个同学生成本周的周报模板（之前发送过的不会重发，利用业务逻辑保证的幂等性）；然后打开“开启定时任务”，这个任务会一直在每周的制定时间给该同学派发周报任务；
 
-
-
-
 ## <a name="9">独立部署</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 ### <a name="10">SQL文件在哪里？</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
@@ -91,7 +88,7 @@ PI 可以增删查改小组及管理相应小组的成员。
 application.properties 邮件客户端修改成适合自己团队使用的配置；
 
 ### <a name="13">配置本地和线上的数据库</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-这个部分就不说了，建库脚本在 QQ 群共享中，请加入后获取；
+不赘述，建库脚本在 QQ 群共享中，请加入后获取；
 
 ### <a name="14">Eclipse 或者 IDEA 支持</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 开发时建议直接使用 Spring Boot 提供的内嵌 Tomcat 容器，ApplicationEmbedded.java 中的 annotation 请取消掉注释同时把 ApplicationExternal.java 全部注释掉，直接选中ApplicationEmbedded.java 使用 `Run As Java Application` 的形式；部署的时候建议把 ApplicationEmbedded.java 中的 annotation 注释掉把 ApplicationExternal.java 复原，然后使用 maven 打成 war 包部署到 Tomcat 中。
@@ -143,7 +140,3 @@ CSS框架：Twitter Bootstrap
 树结构控件：jQuery zTree
 
 日期控件： datepicker
-
-### <a name="16">试用链接</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-
-https://chenxofhit.xyz/rushboard ，Rushboard 是 BioDashboard 的升级版本，详细的介绍请参考：https://github.com/chenxofhit/Rushboard 。
