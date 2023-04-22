@@ -5,7 +5,8 @@ import java.io.IOException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.nodes.Document;
+import org.jsoup.safety.Safelist;
 
 /**
  * xss非法标签过滤
@@ -22,7 +23,7 @@ public class JsoupUtil {
 	 * strike,strong,sub,sup,u,ul,img
 	 * 以及a标签的href,img标签的src,align,alt,height,width,title属性
 	 */
-	private static final Whitelist whitelist = Whitelist.basicWithImages();
+	private static final Safelist whitelist = Safelist.relaxed();
 	/** 配置过滤化参数,不对代码进行格式化 */
 	private static final Document.OutputSettings outputSettings = new Document.OutputSettings().prettyPrint(false);
 	static {
@@ -35,7 +36,7 @@ public class JsoupUtil {
 	public static String clean(String content) {
 		return Jsoup.clean(content, "", whitelist, outputSettings);
 	}
-	
+
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		String text = "<a href=\"http://www.baidu.com/a\" onclick=\"alert(1);\">sss</a><script>alert(0);</script>sss";
 		System.out.println(clean(text));
