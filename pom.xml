@@ -7,9 +7,7 @@
     <groupId>com.csu</groupId>
     <artifactId>biodashboard</artifactId>
     <version>1.0.0</version>
-    <!--部署成war包时开启↓↓↓↓ -->
-    <packaging>war</packaging>
-    <!--部署成war包时开启↑↑↑↑ -->
+    <packaging>jar</packaging>
 
     <name>biodashboard</name>
     <description>Bio-Dashboard for Prof Li's bioinformatics team</description>
@@ -271,19 +269,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-
-        <!--部署成war包时开启↓↓↓↓ -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <!--部署成war包时开启↑↑↑↑ -->
 
     </dependencies>
     <build>
