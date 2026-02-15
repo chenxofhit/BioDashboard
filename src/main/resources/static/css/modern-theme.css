@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+:root {
+  --bd-bg: #f4f8fc;
+  --bd-card: #ffffff;
+  --bd-primary: #0e7490;
+  --bd-primary-2: #2563eb;
+  --bd-ink: #0f172a;
+  --bd-muted: #64748b;
+  --bd-border: #dbe7f3;
+  --bd-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --bd-radius: 14px;
+}
+
+html,
+body {
+  font-family: 'Outfit', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+body.gray-bg,
+body.signin {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(14, 116, 144, 0.12), transparent 35%),
+    radial-gradient(circle at 95% 90%, rgba(37, 99, 235, 0.1), transparent 28%),
+    var(--bd-bg);
+}
+
+.fixed-sidebar .navbar-static-side,
+.navbar-default.navbar-static-side {
+  background: linear-gradient(180deg, #0f172a 0%, #111f37 70%, #13284a 100%);
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+#side-menu > li > a {
+  color: rgba(226, 232, 240, 0.94);
+  border-radius: 10px;
+  margin: 4px 10px;
+  transition: all 0.2s ease;
+}
+
+#side-menu > li.active > a,
+#side-menu > li > a:hover {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(14, 116, 144, 0.5), rgba(37, 99, 235, 0.5));
+}
+
+#side-menu .nav-header {
+  background: transparent;
+  padding: 26px 16px 18px;
+}
+
+#side-menu .nav-label {
+  font-weight: 500;
+}
+
+#page-wrapper {
+  border-left: 0;
+  min-height: 100vh;
+  background: transparent;
+}
+
+.content-tabs {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--bd-border);
+}
+
+.page-tabs a.active {
+  color: var(--bd-primary-2);
+  font-weight: 600;
+}
+
+.page-tabs a.active::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--bd-primary), var(--bd-primary-2));
+}
+
+.roll-nav,
+.btn,
+.form-control,
+.panel,
+.modal-content {
+  border-radius: 12px;
+}
+
+.btn.btn-primary,
+.btn-primary {
+  border: 0;
+  background: linear-gradient(135deg, var(--bd-primary), var(--bd-primary-2));
+  box-shadow: 0 6px 18px rgba(14, 116, 144, 0.25);
+}
+
+.btn.btn-primary:hover,
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+.form-control {
+  border: 1px solid var(--bd-border);
+  box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #7dd3fc;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+.panel,
+.wrapper-content .ibox,
+.ibox-content,
+.fixed-table-container {
+  background: var(--bd-card);
+  border: 1px solid var(--bd-border);
+  box-shadow: var(--bd-shadow);
+}
+
+.panel-heading,
+.ibox-title {
+  border-radius: var(--bd-radius) var(--bd-radius) 0 0;
+  border-bottom: 1px solid var(--bd-border);
+}
+
+.table {
+  background: #fff;
+}
+
+.table > thead > tr > th {
+  border-bottom: 1px solid var(--bd-border);
+  color: #334155;
+  background: #f8fbff;
+}
+
+.footer {
+  border-top: 1px solid var(--bd-border);
+  background: transparent;
+  color: var(--bd-muted);
+}
+
+.footer-modern {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  font-size: 13px;
+}
+
+.footer-modern .footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-modern .footer-left strong {
+  color: var(--bd-ink);
+  font-weight: 700;
+}
+
+.footer-modern .footer-meta {
+  color: var(--bd-muted);
+}
+
+.footer-modern .footer-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-modern .footer-right a {
+  color: var(--bd-primary-2);
+  font-weight: 600;
+}
+
+.login-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.signinpanel {
+  width: 100%;
+  max-width: 980px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--bd-border);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.16);
+  padding: 26px;
+  animation: fadeUp 0.55s ease both;
+}
+
+.signinpanel .signin-info {
+  padding: 10px 8px;
+}
+
+.signinpanel .logopanel h1 {
+  color: var(--bd-ink);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.signinpanel form {
+  border: 1px solid var(--bd-border);
+  border-radius: 14px;
+  background: #fff;
+  padding: 20px;
+}
+
+.signinpanel .btn-login {
+  border: 0;
+  color: #fff;
+  background: linear-gradient(135deg, var(--bd-primary), var(--bd-primary-2));
+}
+
+.signinpanel .signup-footer {
+  margin-top: 14px;
+  color: var(--bd-muted);
+}
+
+.J_mainContent {
+  animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .signinpanel {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .signinpanel form {
+    margin-top: 12px;
+  }
+
+  .content-tabs .roll-nav,
+  .content-tabs .btn-group {
+    display: none;
+  }
+
+  .footer-modern {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-modern .footer-left,
+  .footer-modern .footer-right {
+    flex-wrap: wrap;
+  }
+}
