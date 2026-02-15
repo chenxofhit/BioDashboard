@@ -52,6 +52,7 @@ BioDashboard 是一款专为**实验室/部门-PI/主管-学生/员工**扁平�
 | **连接池** | Alibaba Druid |
 | **缓存** | Ehcache |
 | **任务调度** | Quartz |
+| **数据库迁移** | Flyway |
 | **前端框架** | Bootstrap + AdminLTE |
 | **表格组件** | Bootstrap Table |
 
@@ -70,14 +71,19 @@ git clone https://github.com/chenxofhit/BioDashboard.git
 cd BioDashboard
 ```
 
-### 2. 初始化数据库
+### 2. 数据库初始化（自动）
 
+项目已集成 **Flyway** 数据库迁移工具，启动时会自动检查并初始化数据库：
+
+- :white_check_mark: **首次启动** - 自动创建所有表结构和基础数据
+- :repeat: **后续启动** - 自动跳过已执行的脚本，不会重复初始化
+- :arrow_up: **版本升级** - 自动执行新的数据库迁移脚本
+
+**手动初始化（可选）**
+
+如需手动导入数据，可执行：
 ```bash
-# 登录 MySQL
-mysql -u root -p
-
-# 在项目根目录执行
-mysql -u root -p < init.sql
+mysql -u root -p biodashboard < init.sql
 ```
 
 ### 3. 配置数据库
@@ -292,7 +298,8 @@ BioDashboard/
 │           ├── mapper/          # MyBatis 映射文件
 │           ├── templates/       # Thymeleaf 模板
 │           └── static/          # 静态资源
-├── init.sql                     # 数据库初始化脚本
+├── init.sql                     # 数据库初始化脚本（手动导入用）
+├── src/main/resources/db/migration/  # Flyway 自动迁移脚本
 ├── start.sh                     # Linux/Mac 启动脚本
 ├── start.bat                    # Windows 启动脚本
 ├── pom.xml                      # Maven 配置

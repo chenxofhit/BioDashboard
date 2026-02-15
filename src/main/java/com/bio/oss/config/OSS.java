@@ -22,21 +22,29 @@ public class OSS {
     
     @Bean
     public QiNiuOSSService qiNiuOSS() {
-        ConfigDO configDO = configService.getByKey("oss_qiniu");
-        String v = configDO.getV();
-        JSONObject json = JSON.parseObject(v);
-        String ak = (String) json.get("AccessKey");
-        String sk = (String) json.get("SecretKey");
-        String bucket = (String) json.get("bucket");
-        String accessUrl = (String) json.get("AccessUrl");
-        
-        OSSConfig ossConfig = new OSSConfig();
-        ossConfig.setQiNiuAccessKey(ak);
-        ossConfig.setQiNiuSecretKey(sk);
-        ossConfig.setQiNiuBucket(bucket);
-        ossConfig.setQiNiuAccessURL(accessUrl);
-        
-        return new QiNiuOSSService(ossConfig, Zone.zone2(), bucket, ak, sk);
+        try {
+            ConfigDO configDO = configService.getByKey("oss_qiniu");
+            if (configDO == null || configDO.getV() == null) {
+                return null;
+            }
+            String v = configDO.getV();
+            JSONObject json = JSON.parseObject(v);
+            String ak = (String) json.get("AccessKey");
+            String sk = (String) json.get("SecretKey");
+            String bucket = (String) json.get("bucket");
+            String accessUrl = (String) json.get("AccessUrl");
+            
+            OSSConfig ossConfig = new OSSConfig();
+            ossConfig.setQiNiuAccessKey(ak);
+            ossConfig.setQiNiuSecretKey(sk);
+            ossConfig.setQiNiuBucket(bucket);
+            ossConfig.setQiNiuAccessURL(accessUrl);
+            
+            return new QiNiuOSSService(ossConfig, Zone.zone2(), bucket, ak, sk);
+        } catch (Exception e) {
+            // 数据库表不存在时返回 null，让应用能够启动
+            return null;
+        }
     }
 
 }

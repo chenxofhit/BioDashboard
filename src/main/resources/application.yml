@@ -35,7 +35,14 @@ spring:
     template-loader-path: classpath:/templates/ftl
     charset: UTF-8
     check-template-location: true
-  
+  # Flyway 数据库迁移配置
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    clean-disabled: true
+   
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*Mapper.xml
   typeAliasesPackage: com.bio.**.domain

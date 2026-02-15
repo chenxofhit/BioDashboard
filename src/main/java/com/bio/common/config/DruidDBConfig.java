@@ -1,7 +1,5 @@
 package com.bio.common.config;
 
-import java.sql.SQLException;
-
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
@@ -12,11 +10,19 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.alibaba.druid.wall.WallConfig;
+import com.alibaba.druid.wall.WallFilter;
+import com.alibaba.druid.filter.stat.StatFilter;
+import com.alibaba.druid.filter.logging.Slf4jLogFilter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by PrimaryKey on 17/2/4.
@@ -99,6 +105,7 @@ public class DruidDBConfig {
 
     @Bean(initMethod = "init", destroyMethod = "close") // 声明其为Bean实例
     @Primary // 在同样的DataSource中，首先使用被标注的DataSource
+    @DependsOn("databaseCreator")
     public DataSource dataSource() {
         DruidDataSource datasource = new DruidDataSource();
 
@@ -120,11 +127,17 @@ public class DruidDBConfig {
         datasource.setTestOnReturn(testOnReturn);
         datasource.setPoolPreparedStatements(poolPreparedStatements);
         datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
-        try {
-            datasource.setFilters(filters);
-        } catch (SQLException e) {
-            logger.error("druid configuration initialization filter", e);
-        }
+        // Use proxy filters so we can configure WallFilter to allow SQL comments (required by Flyway DDL)
+        List<com.alibaba.druid.filter.Filter> proxyFilters = new ArrayList<>();
+        proxyFilters.add(new StatFilter());
+        WallFilter wallFilter = new WallFilter();
+        WallConfig wallConfig = new WallConfig();
+        wallConfig.setCommentAllow(true);
+        wallConfig.setMultiStatementAllow(true);  // required by Flyway migration scripts (e.g. SET NAMES; SET FOREIGN_KEY_CHECKS)
+        wallFilter.setConfig(wallConfig);
+        proxyFilters.add(wallFilter);
+        proxyFilters.add(new Slf4jLogFilter());
+        datasource.setProxyFilters(proxyFilters);
         datasource.setConnectionProperties(connectionProperties);
 
         return datasource;

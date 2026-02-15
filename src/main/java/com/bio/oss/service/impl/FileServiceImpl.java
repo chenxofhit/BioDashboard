@@ -25,11 +25,14 @@ public class FileServiceImpl extends CoreServiceImpl<FileDao, FileDO> implements
 
     @Autowired
     private BiodashboardConfig ifastConfig;
-    @Autowired
+    @Autowired(required = false)
     private QiNiuOSSService qiNiuOSS;
 
     @Override
     public String upload(byte[] uploadBytes, String fileName) {
+        if (qiNiuOSS == null) {
+            throw new RuntimeException("OSS服务未配置，请先配置七牛云存储");
+        }
         fileName = fileName.substring(0, fileName.indexOf(".")) + "-" + System.currentTimeMillis() + fileName.substring(fileName.indexOf("."));
         fileName = ifastConfig.getProjectName() + "/" + DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN_8)
                 + "/" + fileName;

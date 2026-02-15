@@ -3,17 +3,18 @@
 
 <head>
     <meta charset="utf-8">
+    <base th:href="${#request.contextPath + '/'}">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>
     <title>BioDashboard </title>
     <meta name="keywords" content="BioDashboard 系统">
     <meta name="description" content="BioDashboard 系统">
-    <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link href="/css/font-awesome.css?v=4.4.0" th:href="@{/css/font-awesome.css?v=4.4.0}" rel="stylesheet">
-    <link href="/css/animate.css" th:href="@{/css/animate.css}" rel="stylesheet">
-    <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
-    <link href="/css/login.css" th:href="@{/css/login.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="${#request.contextPath + '/css/bootstrap.min.css'}">
+    <link rel="stylesheet" th:href="${#request.contextPath + '/css/font-awesome.css?v=4.4.0'}">
+    <link rel="stylesheet" th:href="${#request.contextPath + '/css/animate.css'}">
+    <link rel="stylesheet" th:href="${#request.contextPath + '/css/style.css'}">
+    <link rel="stylesheet" th:href="${#request.contextPath + '/css/login.css'}">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -72,11 +73,11 @@
                     <div class="outside-login-cot">
                         <a class="outside-login-btn wxoa actived J-btnSwitchLoginType" target="_Blank"
                            href="javascript:void();" onclick="login4qq()">
-                            <em><img alt="QQ" src="/img/login_qq.png" height="32" width="32"></i></em>
+                            <em><img alt="QQ" th:src="${#request.contextPath + '/img/login_qq.png'}" height="32" width="32"></i></em>
                         </a>
                         <a class="outside-login-btn wxoa actived J-btnSwitchLoginType" target="_Blank"
                            href="javascript:void();" onclick="login4wechat()">
-                            <em><img alt="微信" src="/img/login_wechat.png" height="32" width="32"></i></em>
+                            <em><img alt="微信" th:src="${#request.contextPath + '/img/login_wechat.png'}" height="32" width="32"></i></em>
                         </a>
                      </div>
                 </div> -->
@@ -93,16 +94,16 @@
 </div>
 <script th:inline="javascript"> var ctx = [[@{/}]] ; </script>
 <!-- 全局js -->
-<script src="/js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
-<script src="/js/bootstrap.min.js?v=3.3.6" th:src="@{/js/bootstrap.min.js?v=3.3.6}"></script>
+<script th:src="${#request.contextPath + '/js/jquery.min.js?v=2.1.4'}"></script>
+<script th:src="${#request.contextPath + '/js/bootstrap.min.js?v=3.3.6'}"></script>
 
 <!-- 自定义js -->
-<script src="/js/content.js?v=1.0.0" th:src="@{/js/content.js?v=1.0.0}"></script>
-<script src="/js/wer.js" th:src="@{/js/wer.js}"></script>
+<script th:src="${#request.contextPath + '/js/content.js?v=1.0.0'}"></script>
+<script th:src="${#request.contextPath + '/js/wer.js'}"></script>
 <!-- jQuery Validation plugin javascript-->
-<script src="/js/plugins/validate/jquery.validate.min.js" th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
-<script src="/js/plugins/validate/messages_zh.min.js" th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
-<script src="/js/plugins/layer/layer.min.js" th:src="@{/js/plugins/layer/layer.min.js}"></script>
+<script th:src="${#request.contextPath + '/js/plugins/validate/jquery.validate.min.js'}"></script>
+<script th:src="${#request.contextPath + '/js/plugins/validate/messages_zh.min.js'}"></script>
+<script th:src="${#request.contextPath + '/js/plugins/layer/layer.min.js'}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 
