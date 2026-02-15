@@ -171,7 +171,6 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserDO> implements Use
 	}
 
 	@Transactional
-	@Override
 	public boolean deleteBatchIds(List<? extends Serializable> idList) {
 		int count = baseMapper.deleteBatchIds(idList);
 		userRoleMapper.deleteBatchIds(idList);

@@ -53,7 +53,6 @@ public class JobServiceImpl extends CoreServiceImpl<TaskDao, TaskDO> implements 
 
 	}
 
-	@Override
 	public boolean deleteBatchIds(List<? extends Serializable> ids) {
 		for (Serializable id : ids) {
 			try {

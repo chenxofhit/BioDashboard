@@ -3,11 +3,10 @@ package com.bio;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import com.bio.common.utils.SpringContextHolder;
 
 /**
  * 
@@ -25,12 +24,14 @@ import com.bio.common.utils.SpringContextHolder;
 public class Application{
 	
     public static void main(String[] args) {
-    	
-        SpringApplication.run(Application.class, args);
-        ServerProperties serverProperties = SpringContextHolder.getApplicationContext().getBean(ServerProperties.class);
+        SpringApplication app = new SpringApplication(Application.class);
+        ConfigurableApplicationContext context = app.run(args);
         
-        System.out.println("==================> run at http://localhost:" + serverProperties.getPort() + serverProperties.getContextPath() + "  <==================");
-    
+        Environment env = context.getBean(Environment.class);
+        String port = env.getProperty("server.port", "8080");
+        String contextPath = env.getProperty("server.servlet.context-path", "");
+        
+        System.out.println("==================> run at http://localhost:" + port + contextPath + "  <==================");
     }
 
 }
