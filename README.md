@@ -71,7 +71,19 @@ git clone https://github.com/chenxofhit/BioDashboard.git
 cd BioDashboard
 ```
 
-### 2. 数据库初始化（自动）
+### 2. 配置数据库
+
+编辑 `src/main/resources/application-dev.yml`：
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/biodashboard?useUnicode=true&characterEncoding=utf8
+    username: root          # 修改为你的数据库用户名
+    password: root          # 修改为你的数据库密码
+```
+
+### 3. 数据库初始化（自动）
 
 项目已集成 **Flyway** 数据库迁移工具，启动时会自动检查并初始化数据库：
 
@@ -84,18 +96,6 @@ cd BioDashboard
 如需手动导入数据，可执行：
 ```bash
 mysql -u root -p biodashboard < init.sql
-```
-
-### 3. 配置数据库
-
-编辑 `src/main/resources/application-dev.yml`：
-
-```yaml
-spring:
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/biodashboard?useUnicode=true&characterEncoding=utf8
-    username: root          # 修改为你的数据库用户名
-    password: root          # 修改为你的数据库密码
 ```
 
 ### 4. 启动项目
