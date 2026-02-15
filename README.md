@@ -1,142 +1,336 @@
-<a name="index">**导航**</a>
+# BioDashboard 周报系统
 
-<a href="#0">BioDashboard 周报系统</a>
+<p align="center">
+  <img src="https://img.shields.io/badge/Spring%20Boot-2.0+-green.svg" alt="Spring Boot">
+  <img src="https://img.shields.io/badge/MySQL-5.7+-blue.svg" alt="MySQL">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
+</p>
 
-&emsp;<a href="#1">目录</a>
+<p align="center">
+  适合中小型公司和科研院校实验室的周报管理系统<br>
+  <em>让周报不再枯燥，让科研协作更高效！</em> :rocket:
+</p>
 
-&emsp;&emsp;<a href="#2">周报模块</a>
+---
 
-&emsp;&emsp;<a href="#3">组织及成员管理模块</a>
+## 项目简介
 
-&emsp;&emsp;<a href="#4">通知模块</a>
+BioDashboard 是一款专为**实验室/部门-PI/主管-学生/员工**扁平化管理模式设计的周报系统。
 
-&emsp;&emsp;<a href="#5">系统截图</a>
+项目起源于 [中南大学生物信息实验室](http://bioinformatics.csu.edu.cn)，已在多个高校实验室和企业团队中使用，包括：
+- 中南大学生物信息实验室
+- 湖南科技大学单细胞计算生物研究组
+- 第四范式（业界公司）
+- 江苏理工大学毕业设计原型
 
-&emsp;<a href="#6">QA</a>
+## 功能特性
 
-&emsp;&emsp;<a href="#7">用户能自己创建周报吗？</a>
+### 周报管理
+- :memo: **智能周报模板** - 周一自动生成本周周报草稿
+- :mag: **历史对照** - 查看上周周报内容作为参考
+- :closed_book: **周报汇总** - PI/主管可查看组内所有周报
 
-&emsp;&emsp;<a href="#8">定时任务</a>
+### 组织管理
+- :office: **扁平化架构** - 实验室(部门) → PI(主管) → 学生(员工)
+- :busts_in_silhouette: **成员管理** - PI 可增删查改小组成员
+- :lock: **权限控制** - 基于角色的细粒度权限管理
 
-&emsp;<a href="#9">独立部署</a>
+### 定时通知
+- :alarm_clock: **周一 7:00** - 自动生成本周周报并邮件通知
+- :bell: **周日 19:00** - 提醒未完成周报的同学
+- :chart_with_upwards_trend: **周一 8:30** - 发送上周统计报告给 PI
 
-&emsp;&emsp;<a href="#10">SQL文件在哪里？</a>
+## 技术栈
 
-&emsp;&emsp;<a href="#11">管理员admin的登录密码？</a>
+| 类别 | 技术 |
+|------|------|
+| **后端框架** | Spring Boot 2.0+ |
+| **安全框架** | Apache Shiro |
+| **持久层** | MyBatis / MyBatis-Plus |
+| **数据库** | MySQL 5.7+ |
+| **连接池** | Alibaba Druid |
+| **缓存** | Ehcache |
+| **任务调度** | Quartz |
+| **前端框架** | Bootstrap + AdminLTE |
+| **表格组件** | Bootstrap Table |
 
-&emsp;&emsp;<a href="#12">配置邮件客户端</a>
+## 快速开始
 
-&emsp;&emsp;<a href="#13">配置本地和线上的数据库</a>
+### 环境要求
 
-&emsp;&emsp;<a href="#14">Eclipse 或者 IDEA 支持</a>
+- JDK 1.8+
+- MySQL 5.7+
+- Maven 3.5+
 
-&emsp;<a href="#15">后续开发计划</a>
+### 1. 克隆项目
 
-&emsp;&emsp;<a href="#16">当前技术选型</a>
+```bash
+git clone https://github.com/chenxofhit/BioDashboard.git
+cd BioDashboard
+```
 
-&emsp;<a href="#17">产品试用</a>
+### 2. 初始化数据库
 
-# <a name="0">BioDashboard 周报系统</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+```bash
+# 登录 MySQL
+mysql -u root -p
 
-The dashboard of Prof.Li's group, let it boost the research cooperation and makes research better！:rocket:	:rocket:	:rocket:	
+# 在项目根目录执行
+mysql -u root -p < init.sql
+```
 
-项目起源于:cn: 中南大学生物信息实验室(http://bioinformatics.csu.edu.cn) ，在中南大学生物信息实验室、湖南科技大学单细胞计算生物研究组中使用，并被诸如第四范式等业界知名公司、江苏理工大学毕业设计原型采用。
+### 3. 配置数据库
 
-适合中小型公司:office:	或者科研院校实验室:school:	的周报系统，采用“实验室[部门]-PI[部门主管]-学生[员工]”扁平化的模式管理，代码完全开源，部署简单方便。下文为了叙述方便，统一采用 “实验室-PI-学生”的视角来展开，不失一般性。
+编辑 `src/main/resources/application-dev.yml`：
 
-## <a name="1">功能</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/biodashboard?useUnicode=true&characterEncoding=utf8
+    username: root          # 修改为你的数据库用户名
+    password: root          # 修改为你的数据库密码
+```
 
-### <a name="2">周报模块</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-同学可以在系统提供的模板上查看、编辑自己的周报；为了优化撰写周报的体验，系统可以拉取最近一周的报告内容作为对照。
+### 4. 启动项目
 
-### <a name="3">组织及成员管理模块</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-PI 可以增删查改小组及管理相应小组的成员。 
+**开发模式（推荐）**
 
-### <a name="4">通知模块</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-系统在后台维护了三个定时任务来支持通知功能。在周一早七点的时候给所有同学发送生成本周的周报草稿通知邮件； 在周日晚七点的时候会给未及时完成周报的同学发通知邮件； 在周一早八点半的时候会给PI推送上周组内周报的统计信息(未完成人数及名单)。目前仅支持邮件推送。
+```bash
+mvn spring-boot:run
+```
 
-### <a name="5">系统截图</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+**或使用 JAR 包方式**
 
-![截图 1](https://tva1.sinaimg.cn/large/006tNbRwgy1gaekv4c2vuj30np0ei74x.jpg)
-![截图 2](https://tva1.sinaimg.cn/large/006tNbRwgy1gael2aknjtj30x20io419.jpg)
-![截图 3](https://tva1.sinaimg.cn/large/006tNbRwgy1gael5yeqtij30wy0ehmym.jpg)
+```bash
+# Linux/Mac
+mvn clean package -DskipTests
+./start.sh start
 
-![截图 4](https://tva1.sinaimg.cn/large/006tNbRwgy1gaeln2205ej31240eb41g.jpg)
-![截图 5](https://tva1.sinaimg.cn/large/006tNbRwgy1gaem6qec6uj311x0d5acc.jpg)
-![截图 5](https://tva1.sinaimg.cn/large/006tNbRwgy1gaelks6pl8j311s0h7acs.jpg)
+# Windows
+mvn clean package -DskipTests
+start.bat start
+```
 
-## <a name="6">QA</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### 5. 访问系统
 
-### <a name="7">用户能自己创建周报吗？</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-这是留言里面问的最多的一个问题，答案是不能：） 考虑到每个人写周报的时候标题格式都不一样，不便于管理，因此同学不能自己创建周报；退而求其次，这个周报是由后台定时任务添加的，类似于派单：周一的时候会给所有的同学生成本周的周报任务，每个同学在本周周五之前填写完成. 我比较欣赏的一句话：Larry Wall's Perl slogan "There's more than one way to do it"； 
+- 地址：http://localhost:8088/biodashboard
+- 账号：`admin`
+- 密码：`1`
 
-### <a name="8">定时任务</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-添加一个同学的时候手动在生成周报模板的定时任务的地方点击“运行一次”，就可以给那个同学生成本周的周报模板（之前发送过的不会重发，利用业务逻辑保证的幂等性）；然后打开“开启定时任务”，这个任务会一直在每周的制定时间给该同学派发周报任务；
+## 邮件配置（可选）
 
-## <a name="9">独立部署</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+如需启用邮件通知功能，编辑 `src/main/resources/application.properties`：
 
-### <a name="10">SQL文件在哪里？</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+```properties
+# SMTP 服务器配置
+spring.mail.host=smtp.qq.com
+spring.mail.username=your-email@qq.com
+spring.mail.password=your-auth-code
+spring.mail.port=587
+spring.mail.protocol=smtp
+spring.mail.default-encoding=UTF-8
 
-请添加QQ群 690853899，群文件共享里面；
+# 发件人
+biodashboard.mail.sender=your-email@qq.com
+```
 
-### <a name="11">管理员admin的登录密码？</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## 系统截图
 
-请查看一下源代码 https://github.com/chenxofhit/BioDashboard/blob/master/src/main/java/com/bio/common/utils/MD5Utils.java 登录帐号密码：admin/1；
+| 登录页面 | 周报列表 | 填写周报 |
+|---------|---------|---------|
+| ![登录](https://tva1.sinaimg.cn/large/006tNbRwgy1gaekv4c2vuj30np0ei74x.jpg) | ![列表](https://tva1.sinaimg.cn/large/006tNbRwgy1gael2aknjtj30x20io419.jpg) | ![填写](https://tva1.sinaimg.cn/large/006tNbRwgy1gael5yeqtij30wy0ehmym.jpg) |
 
-### <a name="12">配置邮件客户端</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+| 部门管理 | 角色管理 | 定时任务 |
+|---------|---------|---------|
+| ![部门](https://tva1.sinaimg.cn/large/006tNbRwgy1gaeln2205ej31240eb41g.jpg) | ![角色](https://tva1.sinaimg.cn/large/006tNbRwgy1gaem6qec6uj311x0d5acc.jpg) | ![任务](https://tva1.sinaimg.cn/large/006tNbRwgy1gaelks6pl8j311s0h7acs.jpg) |
 
-application.properties 邮件客户端修改成适合自己团队使用的配置；
+## 常见问题
 
-### <a name="13">配置本地和线上的数据库</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-不赘述，建库脚本在 QQ 群共享中，请加入后获取；
+### Q: 为什么用户不能自己创建周报？
 
-### <a name="14">Eclipse 或者 IDEA 支持</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-开发时建议直接使用 Spring Boot 提供的内嵌 Tomcat 容器，ApplicationEmbedded.java 中的 annotation 请取消掉注释同时把 ApplicationExternal.java 全部注释掉，直接选中ApplicationEmbedded.java 使用 `Run As Java Application` 的形式；部署的时候建议把 ApplicationEmbedded.java 中的 annotation 注释掉把 ApplicationExternal.java 复原，然后使用 maven 打成 war 包部署到 Tomcat 中。
+**A:** 为了保证周报格式统一便于管理，周报由系统定时任务自动生成，而非用户手动创建。每周一早上会自动为所有成员生成本周周报任务。
 
+### Q: 如何为新成员生成本周周报？
 
+**A:** 
+1. 在「系统工具」→「计划任务」中找到 `ThisWeekReportTemplateGenerateJob`
+2. 点击「运行一次」为新成员生成周报
+3. 开启定时任务后，系统会在每周一自动为所有成员派发周报
 
-## <a name="15">后续开发计划</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## 生产环境部署
 
-希望有产品经验的，UI设计经验的同学加入，同时寻微信小程序，iOS，Android 三端开发爱好者共同完成，代码将完全开源； 
+### 方式一：使用启动脚本（推荐）
 
-### <a name="16">当前技术选型</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+#### Linux/Mac
 
-基于 Spring Boot + Mybatis + Mybatis Plus搭建的平台。
+```bash
+# 1. 编译打包
+mvn clean package -DskipTests
 
-以 Spring Boot 为基础框架， Mybatis plus为数据访问层, Apache Shiro 为权限授权层, Ehcahe 对常用数据进行缓存,基于 Bootstrap 构建的 Admin LTE 作为前端框架。
+# 2. 复制启动脚本
+cp target/biodashboard-1.0.0.jar .
 
-1.后端
+# 3. 赋予执行权限
+chmod +x start.sh
 
-核心框架：Spring Boot
+# 4. 启动应用
+./start.sh start
 
-安全框架：Apache Shiro
+# 其他命令
+./start.sh stop      # 停止应用
+./start.sh restart   # 重启应用
+./start.sh status    # 查看状态
+./start.sh log       # 查看实时日志
+```
 
-视图框架：Spring MVC
+#### Windows
 
-服务端验证：Hibernate Validator
+```bash
+# 1. 编译打包
+mvn clean package -DskipTests
 
-任务调度：Quartz
+# 2. 复制启动脚本
+copy target\biodashboard-1.0.0.jar .
 
-持久层框架：Mybatis、Mybatis plus
+# 3. 启动应用
+start.bat start
 
-数据库连接池：Alibaba Druid
+# 其他命令
+start.bat stop       # 停止应用
+start.bat restart    # 重启应用
+start.bat status     # 查看状态
+```
 
-缓存框架：Ehcache
+### 方式二：直接运行 JAR
 
-日志管理：SLF4J、Log4j
+```bash
+# 编译打包
+mvn clean package -DskipTests
 
-工具类：Apache Commons、Jackson、Xstream
+# 运行（使用生产环境配置）
+java -jar target/biodashboard-1.0.0.jar --spring.profiles.active=prod
 
-2.前端
+# 或指定自定义配置
+java -jar target/biodashboard-1.0.0.jar \
+  --spring.profiles.active=prod \
+  --server.port=8080 \
+  --spring.datasource.password=yourpassword
+```
 
-JS框架：jQuery
+### 生产环境配置
 
-CSS框架：Twitter Bootstrap
+编辑 `src/main/resources/application-prod.yml`：
 
-数据表格：bootstrap table
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/biodashboard?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: your_production_password    # 修改生产环境密码
 
-对话框：layer
+server:
+  port: 8088                            # 可根据需要修改端口
 
-树结构控件：jQuery zTree
+bio:
+  projectRootURL: http://your-domain.com/biodashboard/  # 修改为你的域名
+```
 
-日期控件： datepicker
+### 后台运行（Linux）
+
+```bash
+# 使用 nohup
+nohup java -jar biodashboard-1.0.0.jar --spring.profiles.active=prod > app.log 2>&1 &
+
+# 或使用 systemd（推荐）
+# 创建 /etc/systemd/system/biodashboard.service
+```
+
+### 使用 systemd 服务（推荐）
+
+创建服务文件 `/etc/systemd/system/biodashboard.service`：
+
+```ini
+[Unit]
+Description=BioDashboard Weekly Report System
+After=syslog.target
+
+[Service]
+User=biodashboard
+Group=biodashboard
+WorkingDirectory=/opt/biodashboard
+ExecStart=/usr/bin/java -jar biodashboard-1.0.0.jar --spring.profiles.active=prod
+SuccessExitStatus=143
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+启动服务：
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl start biodashboard
+sudo systemctl enable biodashboard  # 开机自启
+sudo systemctl status biodashboard  # 查看状态
+```
+
+## 项目结构
+
+```
+BioDashboard/
+├── src/
+│   └── main/
+│       ├── java/com/bio/
+│       │   ├── common/          # 公共工具类
+│       │   ├── sys/             # 系统管理模块
+│       │   ├── bio/             # 周报业务模块
+│       │   └── job/             # 定时任务模块
+│       └── resources/
+│           ├── mapper/          # MyBatis 映射文件
+│           ├── templates/       # Thymeleaf 模板
+│           └── static/          # 静态资源
+├── init.sql                     # 数据库初始化脚本
+├── start.sh                     # Linux/Mac 启动脚本
+├── start.bat                    # Windows 启动脚本
+├── pom.xml                      # Maven 配置
+└── README.md
+```
+
+## 贡献指南
+
+欢迎提交 Issue 和 Pull Request！
+
+1. Fork 本仓库
+2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交你的修改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 打开一个 Pull Request
+
+## 开发计划
+
+- [ ] 微信小程序端
+- [ ] 移动端 APP (iOS/Android)
+- [ ] UI 界面优化
+- [ ] 数据导出功能 (PDF/Excel)
+- [ ] 钉钉/飞书集成
+
+## 许可证
+
+[MIT License](LICENSE)
+
+## 致谢
+
+感谢以下单位和个人对项目的支持：
+
+- 中南大学生物信息实验室
+- 湖南科技大学单细胞计算生物研究组
+- 所有贡献者和用户
+
+---
+
+<p align="center">
+  <sub>Built with :heart: by <a href="https://github.com/chenxofhit">@chenxofhit</a></sub>
+</p>

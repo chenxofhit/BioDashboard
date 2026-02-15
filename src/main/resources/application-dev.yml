@@ -20,10 +20,10 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/ifast?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/biodashboard?useUnicode=true&characterEncoding=utf8
     username: root
-    password: DQcIih}L9}xp
-    initialSize: 1
+    password: root
+    initialSize: 3
     minIdle: 3
     maxActive: 20
     # 配置获取连接等待超时的时间

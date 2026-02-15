@@ -1,6 +1,7 @@
 bio:
   projectName: biodashboard
-  projectRootURL: http://bioinformatics.csu.edu.cn/biodashboard/
+  # 生产环境访问地址，请根据实际情况修改
+  projectRootURL: http://localhost:8088/biodashboard/
 logging:
   level:
     root: WARN        

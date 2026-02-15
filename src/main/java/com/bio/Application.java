@@ -18,15 +18,15 @@ import com.bio.common.utils.SpringContextHolder;
  * 
  */
 
-//@EnableTransactionManagement
-//@ServletComponentScan
-//@MapperScan("com.bio.*.dao")
-//@SpringBootApplication
-public class ApplicationEmbedded{
+@EnableTransactionManagement
+@ServletComponentScan
+@MapperScan("com.bio.*.dao")
+@SpringBootApplication
+public class Application{
 	
     public static void main(String[] args) {
     	
-        SpringApplication.run(ApplicationEmbedded.class, args);
+        SpringApplication.run(Application.class, args);
         ServerProperties serverProperties = SpringContextHolder.getApplicationContext().getBean(ServerProperties.class);
         
         System.out.println("==================> run at http://localhost:" + serverProperties.getPort() + serverProperties.getContextPath() + "  <==================");
